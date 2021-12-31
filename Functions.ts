@@ -1,8 +1,13 @@
-const fullName = (name: string, lastName: string) => {
-  return `hi ${name} ${lastName}`;
+const fullName = (name: string, lastName?: string) => {
+  if (lastName) {
+    return `hi ${name} ${lastName}`;
+  } else {
+    return `hi ${name}`;
+  }
 };
 
 fullName("esrafil", "elahi");
+fullName("esrafil");
 
 // ================================
 
@@ -10,11 +15,10 @@ function greeter(fn: (a: string) => void) {
   fn("Hello, World");
 }
 
-function printToConsole(s: string) {
-  console.log(s);
+function printToConsole(a: string) {
+  console.log(a);
 }
 
 greeter(printToConsole);
 
 // ================================
-

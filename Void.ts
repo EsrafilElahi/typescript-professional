@@ -4,3 +4,5 @@ const doSomeThing = (): void => {
 
 const foo: void = null;
 const bar: void = undefined;
+
+

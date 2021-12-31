@@ -18,10 +18,16 @@ const person2: UserInterface = {
 };
 
 interface PointInterface {
-  x: number;
-  y: number;
+  readonly x: number;
+  readonly y: number;
 }
 
 const coordinates = (p: PointInterface) => {
   return `X: ${p.x} Y: ${p.y}`;
 };
+
+interface getData {
+  job: string;
+  age: number;
+  admin: boolean;
+}
