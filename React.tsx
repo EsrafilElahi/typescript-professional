@@ -1,3 +1,69 @@
+interface Person {
+  firstName: string;
+  lastName: string;
+}
+
+interface Props {
+  text: string;
+  id: number;
+  ok?: boolean;
+  fn?: (title: string) => string;
+  submit: React.FormEvent;
+  person?: Person;
+  handleChange : (event: React.ChangeEvent<HTMLInputElement>) => void;
+  setTodo: React.Dispatch<React.setStateAction<string>>;
+}
+
+const TextField: React.FC<Props> = ({handleChange}) => {
+  
+  const inputRef = useRef<HTMLInputElement>(null);
+  const divRef = useRef<HTMLDivElement>(null);
+  
+  return (
+    <div ref={divRef}>
+      <p>text field</p>
+      <input ref={inputRef} onChange={handleChange} />
+    </div>
+  )
+}
+
+// handles every thing
+onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+onChange = (e: React.FormEvent<HTMLSelectElement>): void
+onClick(event: React.MouseEvent<HTMLButtonElement>): void;
+
+// React.ReactNode --> everything supported React.ReactChild / React.ReactFragment / React.ReactPortal ...
+// ({children: React.ReactNode})
+const App: React.FC = () => {
+  return (
+    <div>
+      <TextField 
+        text='test' 
+        id={23} 
+        ok={false} 
+        fn={() => console.log("hello kitty")}
+        person={{firstName: "folan", lastName: "folani"}}
+        handleChange = {() => alert("handel this fucking test input")}
+      />
+    </div>
+  )
+}
+
+
+
+
+
+
+
+// react form handling
+const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {}
+const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {}
+
+<form onSubmit={handleSubmit}>
+  <input onChange={handleChange} />
+</form>
+
+
 import React, { ReactNode, ReactElement, useState } from "react";
 
 // props
@@ -6,7 +72,7 @@ const Title = ({ name }: { name: string }) => {
 };
 
 // children
-const Heading = ({ children }: { children?: ReactNode }): ReactElement => {
+const Heading = ({ children }: { children?: React.ReactNode }): React.ReactElement => {
   return <div>{children}</div>;
 };
 
