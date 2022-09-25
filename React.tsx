@@ -11,7 +11,7 @@ interface Props {
   submit: React.FormEvent;
   person?: Person;
   handleChange : (event: React.ChangeEvent<HTMLInputElement>) => void;
-  setTodo: React.Dispatch<React.setStateAction<string>>;
+  setTodo: React.Dispatch<React.setStateAction<string | string[]>>;
 }
 
 const TextField: React.FC<Props> = ({handleChange}) => {
@@ -77,13 +77,7 @@ const Heading = ({ children }: { children?: React.ReactNode }): React.ReactEleme
 };
 
 // list
-const List<strType> = (
-  {items, render}: 
-  {
-    items: strType[], 
-    render: (item: strType) => ReactNode;
-  }
-) => {
+const List<strType> = ({items, render}: {items: strType[], render: (item: strType) => ReactNode}) => {
   return(
     <ul>
       {
