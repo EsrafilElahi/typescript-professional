@@ -2,7 +2,7 @@ interface UserInterface {
   name: string;
   age?: number;
   admin: boolean;
-  getMessage?(name): string;
+  getMessage?(name: string): string;
 }
 
 const person1: UserInterface = {
@@ -22,7 +22,7 @@ interface PointInterface {
   readonly y: number;
 }
 
-const coordinates = (p: PointInterface) => {
+const coordinates = (p: PointInterface): string => {
   return `X: ${p.x} Y: ${p.y}`;
 };
 
