@@ -7,5 +7,5 @@ enum Color {
 let c1: Color = Color.green;
 let c2: string = Color[10];
 
-console.log(c1);
-console.log(c2);
+console.log(c1); // --> 42
+console.log(c2); // --> red
