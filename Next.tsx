@@ -15,13 +15,6 @@ export const getServerSideProps: GetServerSideProps = async context => {
   // ...
 }
 
-
-export default (req: NextApiRequest, res: NextApiResponse) => {
-  // ...
-}
-
-
-
 function App({ Component, pageProps }: AppProps) {
   return <Component {...pageProps} />
 }
