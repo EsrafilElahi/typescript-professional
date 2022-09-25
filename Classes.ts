@@ -20,7 +20,7 @@ class User {
 
 const user1 = new User("timmoti", "shalami");
 
-console.log(user1.getFullName());
+console.log(user1.getFullName()); // ---> it's work and shown beacuse we called the function which gived name and family
 // console.log(user1.firstName); ---> it's private doesn't shown
 // console.log(user1.lastName); ---> it's private doesn't shown
 
