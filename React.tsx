@@ -50,6 +50,18 @@ const App: React.FC = () => {
 }
 
 
+// react component
+// in doroste na React.FC
+const ReactComponent = ({ children }: { children: React.ReactNode }): React.ReactElement => {
+  return (
+    <div>
+      <span>hello world</span>
+    </div>
+  )
+}
+
+export default ReactComponent
+
 
 
 
