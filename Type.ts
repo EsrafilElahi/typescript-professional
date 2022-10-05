@@ -10,7 +10,7 @@ const person: UserType = {
   job: false,
 };
 
-type ID = number;
+type ID = number | number[];
 
-const info1: ID | ID[] = 23;
-const info2: ID | ID[] = [1, 4, 2, 5];
+const info1: ID = 23;
+const info2: ID = [1, 4, 2, 5];

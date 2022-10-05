@@ -1,5 +1,4 @@
 import { GetStaticProps, GetStaticPaths, GetServerSideProps } from "next";
-import { NextApiRequest, NextApiResponse } from "next";
 import { AppProps } from "next/app";
 
 
