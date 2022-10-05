@@ -1,0 +1,109 @@
+---
+title: 'Variable Web Fonts: Reduce Your Bundle 79%'
+excerpt: 'Fewer round-trip requests and reduced overall network transfer make variable web fonts a total win. Learn how to use and optimize variable fonts to make your next project more beautiful than ever.'
+coverImage: '/assets/banner.png'
+date: '2021-01-18T05:35:07.322Z'
+author:
+  name: Anson Lichtfuss
+  picture: '/assets/about-profile-photo.jpeg'
+ogImage:
+  url: '/assets/banner.png'
+---
+
+Typography brings an incredible amount of identity and soul to branding; distinguishing and reflecting our ideals and values.
+
+Branding on websites provides a unique opportunity to expand this character using custom web fonts. Unfortunately, complexity of choice expands when taking into account how the number of font bytes sent are [steadily increasing](https://httparchive.org/reports/page-weight#bytesFont), with [more requests than ever](https://httparchive.org/reports/page-weight#reqFont).
+
+Already gaining [widespread support](https://caniuse.com/variable-fonts), **variable fonts** solve for both problems by packaging all possible font weights into a single file. This results in fewer round-trip requests and reduced overall network transfer required to load custom web fonts. Faster websites are a real crowd pleaser, especially for [search engines](https://developers.google.com/web/updates/2018/07/search-ads-speed).
+
+> Say hello to loading web fonts on that flaky cell tower connection. (...though, have a fallback just in case...)
+
+## Optimize your fonts. Or else.
+
+On this website I previously used [`typeface-work-sans`](https://www.npmjs.com/package/typeface-work-sans) to load in my custom font files, since self-hosting fonts is [recommended](https://www.tunetheweb.com/blog/should-you-self-host-google-fonts/) (especially considering [newer browser caching policies](https://developers.google.com/web/updates/2020/10/http-cache-partitioning)).
+
+If I know one thing about myself, it's that I love using a variety of font weights when designing websites. Doing so ran me at **93kB** of network transfer on **four** network requests, one for each weight in use.
+
+> This is still lower than the currently worldwide average of [132kB](https://httparchive.org/reports/page-weight#bytesFont) spread over [five requests](https://httparchive.org/reports/page-weight#reqFont).
+
+After switching to variable fonts, reducing the font to my needed character subset, and enabling Brotli compression, my fonts now clock in at **20kB** received via **one** network request.
+
+That's a **79% decrease** in network transfer more efficiently pooled into one request! 🎉
+
+## Do The Thing
+
+Once you select a font you love with all your heart, make sure your download includes a variable font file. (If not, accept the heartbreak and send pleading love letters to the font's creator.) With that variable font file on hand, here's how to reduce, compress, and set it up for use:
+
+1. Install the [`fonttools`](https://github.com/fonttools/fonttools) Python library.
+
+```bash
+pip install fonttools
+```
+
+2. Run this command, replacing `WorkSans...` with the name of your font file, as well as the output file name. This will only keep the uppercase and lowercase letters as well as space character for the font, while also applying Brotli compression:
+
+```bash
+pyftsubset WorkSans-VariableFont_wght.ttf \
+    --unicodes="U+0020,U+0041-005A,U+0061-007A" \
+    --flavor="woff2" \
+    --output-file="WorkSans-VariableOptimized.woff2"
+```
+
+3. Import your beautiful new font file in your page `<head>`, telling browsers to preload the file for faster rendering:
+
+```html
+<link
+  rel="preload"
+  href="/fonts/WorkSans-VariableOptimized.woff2"
+  as="font"
+  type="font/woff2"
+  crossorigin="anonymous"
+/>
+```
+
+4. Add a `@font-face` CSS rule, noting what font weights and characters are supported by the file:
+
+```css
+@font-face {
+  font-family: 'Work Sans';
+  font-style: normal;
+  font-weight: 100 900;
+  src: url(/fonts/work-sans-variable.woff2) format('woff2');
+  unicode-range: U+0020, U+0041-005A, U+0061-007A;
+}
+```
+
+5. Use the font!
+
+Some additional topics to consider, depending on your required browser version support and needs:
+
+- [Ensure _italics_ display properly.](https://rwt.io/typography-tips/getting-bent-current-state-italics-variable-font-support)
+- [Provide fallbacks for older browsers.](https://codepen.io/glyphe/pen/XxZzYV)
+- [Use system font stacks for essential content.](https://systemfontstack.com)
+
+---
+
+<br />
+<sup>Resources:</sup>
+<br />
+<sup>
+  <a href="https://web.dev/variable-fonts/">
+    Introduction to variable fonts on the web
+  </a>
+</sup>
+<br />
+<sup>
+  <a href="https://thetrevorharmon.com/blog/how-to-prepare-and-use-variable-fonts-on-the-web">
+    How To Prepare and Use Variable Fonts on the Web
+  </a>
+</sup>
+<br />
+<sup>
+  <a href="https://michaeljherold.com/2015/05/04/creating-a-subset-font/">
+    Creating a subset font
+  </a>
+</sup>
+<br />
+<sup>
+  <a href="https://caniuse.com/variable-fonts">Can I use Variable Fonts</a>
+</sup>
