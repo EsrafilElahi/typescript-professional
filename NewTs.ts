@@ -27,15 +27,10 @@ const logAndReturn = <T>(input: T): T => {
   return input;
 };
 
-logAndReturn < number > 123;
-
 interface User {
   firstname: string;
   lastname: string;
 }
-
-logAndReturn < User > { firstname: "Chris", lastname: "Bongers" };
-
 
 // =================================================================
 
