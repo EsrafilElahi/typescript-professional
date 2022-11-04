@@ -38,9 +38,7 @@ type UnlockedAccount = CreateMutable<LockedAccount>;
 // =======================================================================
 
 type Getters<Type> = {
-  [Property in keyof Type as `get${Capitalize<
-    string & Property
-  >}`]: () => Type[Property];
+  [Property in keyof Type as `get${Capitalize<string & Property>}`]: () => Type[Property];
 };
 
 interface Person {
@@ -72,7 +70,7 @@ type MyPartial<User> = {
 };
 
 // keyof User ---> "name" | "fmaily" | "age" | "phone"
-// Property ---> every keyod User like : "name"
+// Property ---> every keyof User like : "name"
 // User[Property] ---> User["name"] => string
 
 // export
