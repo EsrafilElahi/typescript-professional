@@ -38,7 +38,9 @@ type UnlockedAccount = CreateMutable<LockedAccount>;
 // =======================================================================
 
 type Getters<Type> = {
-  [Property in keyof Type as `get${Capitalize<string & Property>}`]: () => Type[Property];
+  [Property in keyof Type as `get${Capitalize<
+    string & Property
+  >}`]: () => Type[Property];
 };
 
 interface Person {
@@ -81,7 +83,6 @@ type UserPartial = {
   phone?: number;
 };
 
-
 // =======================================================================
 
 type Listeners<Type> = {
@@ -110,3 +111,58 @@ listenToObject(lg, {
   onAgeChange: (v: number) => {},
   onAgeDelete: () => {},
 });
+
+// =======================================================================
+
+type EventConfig<Events extends { kind: string }> = {
+  [E in Events as E["kind"]]: (event: E) => void;
+};
+
+type SquareEvent = { kind: "square"; x: number; y: number };
+type CircleEvent = { kind: "circle"; radius: number };
+
+type Config = EventConfig<SquareEvent | CircleEvent>;
+
+// output
+// type Config = {
+//   square: (event: SquareEvent) => void;
+//   circle: (event: CircleEvent) => void;
+// };
+
+// =======================================================================
+
+// Remove the 'kind' property
+type RemoveKindField<Type> = {
+  [Property in keyof Type as Exclude<Property, "kind">]: Type[Property];
+};
+
+interface Circle {
+  kind: "circle";
+  radius: number;
+}
+
+type KindlessCircle = RemoveKindField<Circle>;
+
+// output
+// type KindlessCircle = {
+//   radius: number;
+// };
+
+// =======================================================================
+
+type ExtractPII<Type> = {
+  [Property in keyof Type]: Type[Property] extends { pii: true } ? true : false;
+};
+
+type DBFields = {
+  id: { format: "incrementing" };
+  name: { type: string; pii: true };
+};
+
+type ObjectsNeedingGDPRDeletion = ExtractPII<DBFields>;
+
+// output
+// type ObjectsNeedingGDPRDeletion = {
+//   id: false;
+//   name: true;
+// };

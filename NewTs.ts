@@ -7,6 +7,9 @@ interface User {
 }
 
 type ReadOnlyByKey<T, K extends keyof T> = Readonly<Pick<T, K>> & Omit<T, K>;
+// desc : T is Type, and K extends keyof T
+// keyof T one of these => "id" | "firstname" | "lastname" | "age"
+// K extends one of "id" | "firstname" | "lastname" | "age"
 type IdReadOnly = ReadOnlyByKey<User, "id">;
 
 // =================================================================

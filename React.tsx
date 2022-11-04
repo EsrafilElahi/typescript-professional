@@ -101,6 +101,7 @@ const List<strType> = ({items, render}: {items: strType[], render: (item: strTyp
 
 function App() {
   const [val, setVal] = useState<number | null>(null);
+  const [state, setState]: [S: Dispatch<SetStateAction<S>>] = useState<S>(initialState); // best practice
 
   return (
     <div>
@@ -117,3 +118,39 @@ function App() {
 }
 
 export default App;
+
+// =============================================
+
+interface ISettings {
+  slidingDuration: number
+  isSmartSliding: boolean
+  shouldAutoplay: boolean
+  width: WidthProperty<string | number>
+  height: HeightProperty<string | number>
+}
+
+/**
+ * Initial settings for the slider.
+ */
+const initialSettings: ISettings = {
+  slidingDuration: 500,
+  isSmartSliding: true,
+  shouldAutoplay: true,
+  autoplayDuration: 8000,
+  width: '100%',
+  height: '100%',
+  ...props.settings
+}
+
+const [settings, setSettings] = React.useState<ISettings>(initialSettings)
+{settings as ISettings} // type assertion
+
+/**
+ * Subscribes to any changes made to the settings, then re-sets them through `setSettings`.
+ */
+React.useEffect(() => {
+  setSettings({
+    ...settings,
+    ...props.settings as ISettings
+  })
+}, [props.settings])
