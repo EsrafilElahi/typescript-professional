@@ -16,6 +16,13 @@ type User = {}
 type Blog = {}
 type Comment_ = {}
 
+interface Obj {
+    name: string
+}
+
+function test<T extends Obj>(obj: T) {
+  return obj.name;
+}
 
 async function fetchApi<ResultType>(path: string): Promise<ResultType>{
     const response = await fetch(`https://freerealapi.com${path}`);
