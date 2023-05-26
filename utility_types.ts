@@ -28,3 +28,20 @@ console.log(
     },
   ])
 );
+
+
+const defaultMeta = {
+  title: 'Wave Nation - Build a Web3 app with Solidity',
+  siteName: 'Wave Nation - Build a Web3 app with Solidity',
+  description: 'Buildspace "Build a Web3 app with Solidity" by Gaël Thomas',
+  /** Without additional '/' on the end */
+  url: 'https://tsnext-tw.thcl.dev',
+  type: 'website',
+  robots: 'follow, index',
+  image: '',
+};
+
+type SeoProps = {
+  date?: string;
+  templateTitle?: string;
+} & Partial<typeof defaultMeta>;
