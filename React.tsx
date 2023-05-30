@@ -1,3 +1,11 @@
+// key in ts
+export type cardInfoProps = {
+  userDetail: {
+    [key: string]: any;
+  };
+};
+
+
 interface Person {
   firstName: string;
   lastName: string;
