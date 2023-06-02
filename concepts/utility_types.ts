@@ -30,6 +30,8 @@ console.log(
   ])
 );
 
+// ==================================================================
+
 
 const defaultMeta = {
   title: 'Wave Nation - Build a Web3 app with Solidity',
@@ -46,3 +48,37 @@ type SeoProps = {
   date?: string;
   templateTitle?: string;
 } & Partial<typeof defaultMeta>;
+
+// ==================================================================
+
+// A = string
+type A = Awaited<Promise<string>>;
+
+// B = number
+type B = Awaited<Promise<Promise<number>>>;
+
+// C = boolean | number
+type C = Awaited<boolean | Promise<number>>;
+
+// ==================================================================
+
+type Excluded = Exclude<string | number, string>;
+
+// number
+
+// ==================================================================
+
+type Extracted = Extract<string | number, string>;
+
+// string
+
+// ==================================================================
+
+type NonNull = NonNullable<string | number | void>;
+
+// string | number
+
+// ==================================================================
+
+
+// ==================================================================
