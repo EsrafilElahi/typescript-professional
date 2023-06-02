@@ -26,3 +26,17 @@ enum list3 {
 
 
 const [state, setState] = useState<list3>(list3.BOOK);
+
+
+const gp = {
+  name: 'ali',
+  age: 24
+}
+
+function getProp<T, K extends keyof T>(val: T, propName: K): T[K] {
+  return val[propName]
+}
+
+const ne = getProp(gp, "age")
+
+console.log(ne)

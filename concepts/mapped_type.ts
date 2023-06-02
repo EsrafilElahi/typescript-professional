@@ -166,3 +166,22 @@ type ObjectsNeedingGDPRDeletion = ExtractPII<DBFields>;
 //   id: false;
 //   name: true;
 // };
+
+
+
+
+// ========================================================================
+
+interface Person {
+  firstName: string;
+  lastName: string;
+  age: number;
+}
+
+type StringProps<T> = {
+  [K in keyof T]: T[K] extends string ? K : never;
+};
+
+type PersonStrings = StringProps<Person>;
+
+// PersonStrings is "firstName" | "lastName"
