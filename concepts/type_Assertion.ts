@@ -1,1 +1,0 @@
-let val = 'someValue' as string;
