@@ -1,4 +1,4 @@
-type size = 'small' | 'medium' | 'large';
+type uniType = object | string[]
 let age: number | string
 
 // spesefic known type
