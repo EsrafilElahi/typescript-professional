@@ -25,6 +25,7 @@ console.log(
     {
       id: 2,
       name: "Mrs. Baz",
+      email: "Mrs. Baz",
     },
   ])
 );
