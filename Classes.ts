@@ -5,7 +5,7 @@ class User {
 
   constructor(firstName: string, lastName: string) {
     this.firstName = firstName;
-    this.lastName = lastName;
+    this.lastName = lastName; 
     this.age = 28;
   }
 
