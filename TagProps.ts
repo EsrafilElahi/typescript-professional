@@ -1,6 +1,6 @@
 const addJob = <Type>(job: Type) => {
   return `your job is ${job}`;
-};
+}; 
 
 type objType = {
   meta: string;
