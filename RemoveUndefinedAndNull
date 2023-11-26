@@ -5,3 +5,5 @@ declare type RemoveUndefinedAndNull<T> = {
     ? NonNullable<U>
     : NonNullable<T[K]>
 }
+
+or NonNullable utility type
