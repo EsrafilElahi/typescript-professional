@@ -1,0 +1,7 @@
+in global.d.ts :
+
+declare type RemoveUndefinedAndNull<T> = {
+  [K in keyof T]-?: T[K] extends Maybe<infer U>
+    ? NonNullable<U>
+    : NonNullable<T[K]>
+}
