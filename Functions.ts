@@ -2,7 +2,7 @@ const fullName = (name: string, lastName?: string) => {
   if (lastName) {
     return `hi ${name} ${lastName}`;
   } else {
-    return `hi ${name}`;
+    return `hi ${name}`; 
   }
 };
 
